@@ -1,14 +1,16 @@
-## This code is for applying - here in NY - the "Landscape Condition" methods developed 
-## by Colorado NHP/Co State. See SHRP 2 C21A April 2012. 
-## Aissa Feldmann, modifying Tim Howard's code from June 2012. Date 21 May 2013, NYNHP.
-
-## FINAL RUN
-
+library(here)
 library(raster)
 
-#change the path below to your working directory
-setwd("C:/Aissa/__EPA_wetlands/LCA2/tifs2")
-    
+# input variables and files
+updateName <- "spring2023"
+
+# create a directory for this update unless it already exists
+ifelse(!dir.exists(here::here("_data")), dir.create(here::here("_data")), FALSE)
+ifelse(!dir.exists(here::here("_data","input")), dir.create(here::here("_data","input")), FALSE)
+ifelse(!dir.exists(here::here("_data","output")), dir.create(here::here("_data","output")), FALSE)
+ifelse(!dir.exists(here::here("_data","output",updateName)), dir.create(here::here("_data","output",updateName)), FALSE)
+
+
 #set a mask; change the path below to the snap raster in your working directory
 msk <- raster("C:/Aissa/__EPA_wetlands/LCA2/tifs2/snapras30met.tif")
 
