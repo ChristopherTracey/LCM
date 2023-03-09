@@ -3,6 +3,8 @@ Transportation,Railroads,Dist_railroad.tif,y1,0.5,10,100,500,100
 Transportation,Interstates,Dist_Interstates.tif,y5,5,5,100,300,2000
 Transportation,StateRoads,Dist_stateroads.tif,y3,1,5,100,300,200
 Energy,ActiveGasWells - Unconventional,Dist_oilgas_unconventional.tif,y2,2.5,2,100,300,100
-Energy,ActiveGasWells - Conventional,Dist_oilgas_unconventional.tif,y3,0.5,2,100,100,100
+Energy,ActiveGasWells - Conventional,Dist_oilgas_conventional.tif,y3,0.5,2,100,100,100
 Landcover,Pasture,Dist_nlcd81.tif,y3,1,5,100,300,200
 Landcover,Agriculture,Dist_nlcd82.tif,y3,1,5,100,300,200
+Landcover,DevLowIntensity,Dist_nlcd22.tif,y2,2.5,2,100,300,300
+Landcover,DevMedHighIntensity,Dist_nlcd23_24.tif,y6,10,0.5,100,500,2000
