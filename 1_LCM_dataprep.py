@@ -51,6 +51,16 @@ def creatdist():
     out_distance_accumulation_raster = arcpy.sa.DistanceAccumulation("ext_nlcd22", None, None, None, None, "BINARY 1 -30 30", None, "BINARY 1 45", None, None, None, None, None, None, '', "PLANAR")
     out_distance_accumulation_raster.save(os.path.join(outFolder, "Dist_nlcd22.tif"))
     arcpy.management.Delete("ext_nlcd22")
+
+    # get developed open space land
+    print("Extracting developed open space land")
+    out_raster = arcpy.sa.ExtractByAttributes(outExtractByMask, "Value IN (21)")
+    out_raster.save("ext_nlcd21")
+    print("- Creating Distance Raster for developed open space land")
+    #with arcpy.EnvManager(mask=PAbuffer):
+    out_distance_accumulation_raster = arcpy.sa.DistanceAccumulation("ext_nlcd21", None, None, None, None, "BINARY 1 -30 30", None, "BINARY 1 45", None, None, None, None, None, None, '', "PLANAR")
+    out_distance_accumulation_raster.save(os.path.join(outFolder, "Dist_nlcd21.tif"))
+    arcpy.management.Delete("ext_nlcd21")
       
     # get high intensity ag land
     print("Extracting high intensity ag land")
@@ -71,6 +81,16 @@ def creatdist():
     out_distance_accumulation_raster = arcpy.sa.DistanceAccumulation("ext_nlcd81", None, None, None, None, "BINARY 1 -30 30", None, "BINARY 1 45", None, None, None, None, None, None, '', "PLANAR")
     out_distance_accumulation_raster.save(os.path.join(outFolder, "Dist_nlcd81.tif"))
     arcpy.management.Delete("ext_nlcd81")
+
+    # get Barren land
+    print("Extracting Pasture and")
+    out_raster = arcpy.sa.ExtractByAttributes(outExtractByMask, "Value IN (31)")
+    out_raster.save("ext_nlcd31")
+    print("- Creating Distance Raster for Barren land")
+    #with arcpy.EnvManager(mask=PAbuffer):
+    out_distance_accumulation_raster = arcpy.sa.DistanceAccumulation("ext_nlcd31", None, None, None, None, "BINARY 1 -30 30", None, "BINARY 1 45", None, None, None, None, None, None, '', "PLANAR")
+    out_distance_accumulation_raster.save(os.path.join(outFolder, "Dist_nlcd31.tif"))
+    arcpy.management.Delete("ext_nlcd31")
 
     # railroads
     print("working on the railroads, I've been")
@@ -193,6 +213,6 @@ def rastersum():
 ######################################################
 # Run the script
 
-#creatdist()
-#inputweights()
+creatdist()
+inputweights()
 rastersum()
