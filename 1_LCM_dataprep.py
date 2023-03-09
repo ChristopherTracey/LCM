@@ -167,12 +167,24 @@ def inputweights():
             theTimes2 = Times(theDivide2,val_w)
             theTimes2.save(os.path.join(outFolder, "Wgt_"+val_fn))
 
-#def rastersum():
-    # sum all the rasters
-    #arcpy.management.MosaicToNewRaster(os.path.join(outFolder, "Wgt_oilgas_conventional.tif");os.path.join(outFolder, "Wgt_oilgas_unconventional.tif");os.path.join(outFolder, "Wgt_stateroads.tif"), r"S:\Projects\PA_NHP\iMap_PrioritizationTool\Workspace\Christopher_Tracey\LCM\PA_LCM _dataprep", "testsum.tif", 'PROJCS["USA_Contiguous_Albers_Equal_Area_Conic_USGS_version",GEOGCS["GCS_North_American_1983",DATUM["D_North_American_1983",SPHEROID["GRS_1980",6378137.0,298.257222101]],PRIMEM["Greenwich",0.0],UNIT["Degree",0.0174532925199433]],PROJECTION["Albers"],PARAMETER["False_Easting",0.0],PARAMETER["False_Northing",0.0],PARAMETER["Central_Meridian",-96.0],PARAMETER["Standard_Parallel_1",29.5],PARAMETER["Standard_Parallel_2",45.5],PARAMETER["Latitude_Of_Origin",23.0],UNIT["Meter",1.0]]', "32_BIT_FLOAT", None, 1, "SUM", "FIRST")
+######################################################
+# sum all the rasters
+def rastersum():
+    print("summing all the rasters")
+
+    arcpy.env.workspace = outFolder
+    rastlist = arcpy.ListRasters("Wgt_*")
+    
+    outfile = "testsum.tif"
+    pixeltype = "32_BIT_FLOAT"
+    numberbands = 1
+    arcpy.management.MosaicToNewRaster(rastlist, outFolder, outfile, \
+                                       'PROJCS["USA_Contiguous_Albers_Equal_Area_Conic_USGS_version",GEOGCS["GCS_North_American_1983",DATUM["D_North_American_1983",SPHEROID["GRS_1980",6378137.0,298.257222101]],PRIMEM["Greenwich",0.0],UNIT["Degree",0.0174532925199433]],PROJECTION["Albers"],PARAMETER["False_Easting",0.0],PARAMETER["False_Northing",0.0],PARAMETER["Central_Meridian",-96.0],PARAMETER["Standard_Parallel_1",29.5],PARAMETER["Standard_Parallel_2",45.5],PARAMETER["Latitude_Of_Origin",23.0],UNIT["Meter",1.0]]', \
+                                       pixeltype, None, numberbands, "SUM", "FIRST")
 
 ######################################################
 # Run the script
 
-creatdist()
-inputweights()
+#creatdist()
+#inputweights()
+rastersum()
