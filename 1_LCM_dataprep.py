@@ -24,9 +24,9 @@ arcpy.env.extent = "1271073.94854837 2044788.12728329 1371748.5188338 2100559.31
 arcpy.env.snapRaster = NLCD
 env.workspace = r"S:\Projects\PA_NHP\iMap_PrioritizationTool\Workspace\Christopher_Tracey\LCM\PA_LCM _dataprep\PA_LCM _dataprep.gdb"
 
-# # work
-# print("Extracting NLCD to project boundary")
-# outExtractByMask = ExtractByMask(NLCD, PAbuffer)
+# work
+print("Extracting NLCD to project boundary")
+outExtractByMask = ExtractByMask(NLCD, PAbuffer)
 #  
 # # get developed land
 # print("Extracting Medium and High Intensity Developed Land")
@@ -49,25 +49,26 @@ env.workspace = r"S:\Projects\PA_NHP\iMap_PrioritizationTool\Workspace\Christoph
 # arcpy.management.Delete("ext_nlcd22")
 #  
 # # get high intensity ag land
-# print("Extracting high intensity ag land")
-# out_raster = arcpy.sa.ExtractByAttributes(outExtractByMask, "Value IN (82)")
-# out_raster.save("ext_nlcd82")
-# print("- Creating Distance Raster for high intensity ag land")
+print("Extracting high intensity ag land")
+out_raster = arcpy.sa.ExtractByAttributes(outExtractByMask, "Value IN (82)")
+out_raster.save("ext_nlcd82")
+print("- Creating Distance Raster for high intensity ag land")
 # with arcpy.EnvManager(mask=PAbuffer):
-#     out_distance_accumulation_raster = arcpy.sa.DistanceAccumulation("ext_nlcd82", None, None, None, None, "BINARY 1 -30 30", None, "BINARY 1 45", None, None, None, None, None, None, '', "PLANAR")
-#     out_distance_accumulation_raster.save(os.path.join(outFolder, "Dist_nlcd82.tif"))
-# arcpy.management.Delete("ext_nlcd82")
-# 
+out_distance_accumulation_raster = arcpy.sa.DistanceAccumulation("ext_nlcd82", None, None, None, None, "BINARY 1 -30 30", None, "BINARY 1 45", None, None, None, None, None, None, '', "PLANAR")
+out_distance_accumulation_raster.save(os.path.join(outFolder, "Dist_nlcd82.tif"))
+arcpy.management.Delete("ext_nlcd82")
+ 
 # # get Pasture land
-# print("Extracting Pasture and")
-# out_raster = arcpy.sa.ExtractByAttributes(outExtractByMask, "Value IN (81)")
-# out_raster.save("ext_nlcd81")
-# print("- Creating Distance Raster for Pasture land")
-# with arcpy.EnvManager(mask=PAbuffer):
-#     out_distance_accumulation_raster = arcpy.sa.DistanceAccumulation("ext_nlcd81", None, None, None, None, "BINARY 1 -30 30", None, "BINARY 1 45", None, None, None, None, None, None, '', "PLANAR")
-#     out_distance_accumulation_raster.save(os.path.join(outFolder, "Dist_nlcd81.tif"))
-# arcpy.management.Delete("ext_nlcd81")
-# 
+print("Extracting Pasture and")
+out_raster = arcpy.sa.ExtractByAttributes(outExtractByMask, "Value IN (81)")
+out_raster.save("ext_nlcd81")
+print("- Creating Distance Raster for Pasture land")
+#with arcpy.EnvManager(mask=PAbuffer):
+out_distance_accumulation_raster = arcpy.sa.DistanceAccumulation("ext_nlcd81", None, None, None, None, "BINARY 1 -30 30", None, "BINARY 1 45", None, None, None, None, None, None, '', "PLANAR")
+out_distance_accumulation_raster.save(os.path.join(outFolder, "Dist_nlcd81.tif"))
+arcpy.management.Delete("ext_nlcd81")
+
+ 
 # # railroads
 print("working on the railroads, I've been")
 arcpy.analysis.Erase(rail_tiger, PAbound, "rail_tiger_erase")
@@ -147,7 +148,7 @@ with arcpy.da.SearchCursor(fTable, fields) as cursor:
         val_w = row[7]
         val_decay = row[8]
 
-        val_fn = val_fn.removeprefix('Dist_')
+        val_fn = val_fn.replace('Dist_','')
 
         theDivide = Divide(os.path.join(outFolder, val_fn), val_c)
         theDivMinus = Minus(theDivide, val_a)
