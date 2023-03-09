@@ -147,7 +147,7 @@ with arcpy.da.SearchCursor(fTable, fields) as cursor:
         val_w = row[7]
         val_decay = row[8]
 
-        val_fn = valfn.removeprefix('Dist_')
+        val_fn = val_fn.removeprefix('Dist_')
 
         theDivide = Divide(os.path.join(outFolder, val_fn), val_c)
         theDivMinus = Minus(theDivide, val_a)
