@@ -43,4 +43,5 @@ PA_LCM _dataprep/
 *.tif
 *.tfw
 *.xml
+*.ovr
 thumbs.db
