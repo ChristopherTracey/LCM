@@ -39,3 +39,8 @@ rsconnect/
 PA_LCM _dataprep/
 
 *.Rproj
+
+*.tif
+*.tfw
+*.xml
+thumbs.db
