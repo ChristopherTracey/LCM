@@ -20,7 +20,7 @@ outFolder = r"S:\Projects\PA_NHP\iMap_PrioritizationTool\Workspace\Christopher_T
 # Set environment settings
 arcpy.env.overwriteOutput = True
 arcpy.env.outputCoordinateSystem = arcpy.SpatialReference("USA_Contiguous_Albers_Equal_Area_Conic_USGS_version")
-arcpy.env.extent = "1271073.94854837 2044788.12728329 1371748.5188338 2100559.31182636" #"1658750.98934339 2138147.93162499 1762664.41198543 2180582.86907212"
+#arcpy.env.extent = "1271073.94854837 2044788.12728329 1371748.5188338 2100559.31182636" #"1658750.98934339 2138147.93162499 1762664.41198543 2180582.86907212"
 arcpy.env.snapRaster = NLCD
 env.workspace = r"S:\Projects\PA_NHP\iMap_PrioritizationTool\Workspace\Christopher_Tracey\LCM\PA_LCM _dataprep\PA_LCM _dataprep.gdb"
 
@@ -213,6 +213,6 @@ def rastersum():
 ######################################################
 # Run the script
 
-creatdist()
-inputweights()
+##creatdist()
+##inputweights()
 rastersum()
