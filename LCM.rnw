@@ -1,0 +1,56 @@
+
+
+A Landscape Condition Model(LCM) for Pennsylvania
+
+April 2018
+
+
+Background
+
+The Pennsylvania Natural Heritage Program developed a Landscape Condition Model (Comer and Hak 2012) to cumulatively depict a suite of anthropogenic   stressors across the state. The model synthesizes these stressors at the 30 m pixel scale – where each pixel has a score representing cumulative stress –and, while it was initially developed to support a wetland project, it can be more broadly applied to answer questions about landscape or site-specific stress. We are currently evaluating this model with field and GIS analyses to assess its effectiveness for estimating wetland quality.
+
+Methods
+
+We began with a set of input themes (i.e. GIS datasets ) with consistent statewide coverage representing factors that were expected to negatively affect plant community composition, physical structure, and function. Following previous studies, we incorporated the assumption that ecological effects of all inputthemes would decrease to zero within 2000 m of their mapped footprint. However, based on Feldmann and Howard (2013), we modified the decay functions depicting the decreasing ecological effects of theinput themes from linear (Comer and Hak 2012) to sigmoidal (Grunau et al. 2012) to better represent“effects that remain strong near the source for some distance before decreasing.” Each of our 11themes (Table 1) were assigned to one of six sigmoid decay curves, each tailored to model a different degree of threat attenuation, from gradual to abrupt (Figure 1). We thought the gradual attenuation wasa likely depiction of the stressors‟ impacts, and adopted the early cutoff from McDonald et al’s (2009)data on invasive species. Based on field experience, we split agriculture into levels of intensity and modeled each separately, however, some literature practices (Davis et al. 1993, Carpenter et al. 1998,de Jong et al. 2008) may not support this split. 
+
+
+To begin our raster analysis, we prepared the set of input layers by creating this 2000 m “calculation space” around them using the Euclidean distance tool in ArcGIS. Each input theme was thus converted into a raster with a 30x30 m grid size extending to a distance of 2000 m from the theme’s footprint.Cell values were equal to the distance value (i.e., x = 0 at the impact site). Stressor values for remaining pixels in each layer were calculated as follows: 
+
+
+
+where
+ x is the Euclidean distance value;
+ a shifts the curve away from center, (i.e., a higher a value implies that the impact remains highas it moves away from the footprint); b determines slope of the decreasing part of the curve;
+ c is a constant reflecting the distance that the stressor no long has any effect to a maximum of2000 m, This was calculated as 𝑐 = 𝑑𝑖𝑠𝑡 20⁄ where dist is the total distance of interest, in this case equal to 2000 m. These distances were based on the work of Grunau et al. (2012), Comer and Hak (2012), Feldmann and Howard 2013, and additional literature review (van der Zande et al. 1980, Forman and Deblinger 2000, Forman 2000, McDonald et al. 2009, Parris and Schneider 2009, Benítez-López et al. 2010, McLachlan et al. 2013); and
+ w is the stressor’s weight. This ranged from 100 to 600, which was set as its maximum value in the impact footprint . 
+
+We next stacked the calculated rasters, replaced null values with zeros, and, following Grunau et al.(2012), we summed their scores to produce a “single...layer representing the cumulative impact to anarea from the included land uses.” We scaled the results to range from zero to one, with higher values indicating higher integrity (Figure 2).Figure 2. Landscape Condition Model. White areas are regions of higher integrity while increasing shades of red indicate lower integrity.Recommended 
+
+Use
+The LCM is useful a variety of ecological applications including:
+ Various methods (e.g. Ecological Integrity Analysis) to assess wetland condition.
+ Assessment of wildlife habitat.
+ Identification of areas that may benefit from ecological restoration.
+
+For more Information
+
+For more information about this dataset, please contact: Christopher Tracey, Conservation Planning Manager, Pennsylvania Natural Heritage Program, 800 Waterfront Drive, Pittsburgh, PA, ctracey@paconserve.org; 412-586-9521
+
+Recommend Citation: Pennsylvania Natural Heritage Program. March 2016. A Landscape Condition Model (LCM) for Pennsylvania. Pittsburgh, PA.
+
+Literature Cited
+
+Benítez-López, A., R. Alkemade, and P. A. Verweij. 2010. The impacts of roads and other infrastructure on mammal and bird populations: A meta-analysis. Biological Conservation 143:1307–1316.
+Carpenter, S. R., N. F. Caraco, D. L. Correll, R. W. Howarth, A. N. Sharpley, and V. H. Smith. 1998. Nonpointpollution of surface waters with phosphorus and nitrogen. Ecological Applications 8:559–568.
+Comer, P. J., and J. Hak. 2012. Landscape Condition in the Conterminous United States. Spatial Model Summary.NatureServe, Boulder, CO.
+Davis, B. N. K., K. H. Lakhani, T. J. Yates, A. J. Frost, and R. A. Plant. 1993. Insecticide drift from ground-based,hydraulic spraying of peas and brussels sprouts: bioassays for determining buffer zones. Agriculture,Ecosystems and Environment 43:93–108.
+De Jong, F. M. W., G. R. de Snoo, and J. C. van de Zande. 2008. Estimated nationwide effects of pesticide spray on terrestrial habitats in the Netherlands. Journal of Environmental Management 86:721–730.
+Feldmann , A. L. and T.G. Howard. 2013. Landscape Condition Assessment (LCA2) for New York. New York Natural Heritage Program.
+Feldmann, A. L., T. G. Howard, and E. A. Spencer. 2012. Pilot wetland condition assessment of palustrine emergent marsh in the Upper Hudson River watershed. A report prepared for the NYSDEC Division of Water by theNew York Natural Heritage Program. Albany, NY.
+Forman, R. T. T. 2000. Estimate of the area affected ecologically by the road system in the United States.Conservation Biology 14:31–35.
+Forman, R. T. T., and R. D. Deblinger. 2000. The ecological road-effect zone of a Massachusetts (U.S.A.) suburban highway. Conservation Biology 14:36–46.
+Grunau, L., M. Fink, K. Decker, D. G. Anderson, E. Carlson, G. Smith, C. Keske, J. Goldstein, and J. Lemly. 2012.SHRP 2 C21A: Pilot test the ecological approaches to environmental protection developed in capacityresearch projects C06A and C06B. 271 pages. Colorado State University, Fort Collins, CO.
+McDonald, R. I., R. T. T. Forman, P. Kareiva, R. A. Neugarten, D. Salzer, and J. Fisher. 2009. Urban effects, distance,and protected areas in an urbanizing world. Landscape and 93:63–75.McLachlan, M. M., A. Daniels, and A. M. Bartuszevige. 2013. User‟s manual: playa lakes decision support system.Playa Lakes Joint Venture, Lafayette, CO, USA.
+Parris, K. M., and A. Schneider. 2009. Impacts of traffic noise and traffic volume on birds of roadside habitats.Ecology and Society 14.
+Van der Zande, A. N., W. J. ter Keurs, and W. J. van der Weijden. 1980. The impact of roads on the densities offour bird species in an open field habitat--evidence of a long-distance effect. Biological Conservation 18:299–321.
+ 
