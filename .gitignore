@@ -45,3 +45,5 @@ PA_LCM _dataprep/
 *.xml
 *.ovr
 thumbs.db
+
+*.png
